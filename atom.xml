@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>欢迎来到张思彤的博客</title>
+  
+  
+  <link href="https://zhang-sitong.gitee.io/blogs/atom.xml" rel="self"/>
+  
+  <link href="https://zhang-sitong.gitee.io/blogs/"/>
+  <updated>2021-01-25T09:45:50.320Z</updated>
+  <id>https://zhang-sitong.gitee.io/blogs/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue拦截器</title>
+    <link href="https://zhang-sitong.gitee.io/blogs/2021/01/25/1%E3%80%81vue%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
+    <id>https://zhang-sitong.gitee.io/blogs/2021/01/25/1%E3%80%81vue%E6%8B%A6%E6%88%AA%E5%99%A8/</id>
+    <published>2021-01-25T06:49:21.000Z</published>
+    <updated>2021-01-25T09:45:50.320Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、拦截器的基本介绍"><a href="#一、拦截器的基本介绍" class="headerlink" title="一、拦截器的基本介绍"></a>一、拦截器的基本介绍</h2><ul><li>什么是拦截器:<ul><li>想拦截住我们的请求过程<br> 比如你想在请求前做一些事情，拦截请求，等这件事做完之后再去请求<br> 或者是要等请求结束之后做一些事情，再返回数据，可以拦截处理之后再返回</li></ul></li><li>拦截器的作用:<ul><li>一般来说，像数据交互之类的都要用到不同的身份验证，比如登录 token验证，验证用户<br> 是否登录，如果没有登录，该用户就不能操作登录之后的内容，这就是拦截器的作用</li></ul></li></ul><h2 id="二、拦截器的分类"><a href="#二、拦截器的分类" class="headerlink" title="二、拦截器的分类"></a>二、拦截器的分类</h2><p>请求拦截器和响应拦截器/路由拦截器<br><code>PS:一般在请求拦截器中增加标识token或其他请求配置，在响应拦截器中对统一错误或状态码进行处理</code><br>① axios提供了拦截请求的功能，可以在发出请求前进行操作，例如统一为所有的请求添加token头信息。<br>② axios提供了拦截响应的功能，可以在处理响应前进行操作，例如统一处理401身份认证错误。</p><h2 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h2><h4 id="路由拦截器-通过路由进行判断"><a href="#路由拦截器-通过路由进行判断" class="headerlink" title="路由拦截器 : 通过路由进行判断"></a>路由拦截器 : 通过路由进行判断</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//to表示要去的路由指向，from是指从哪个路由跳转过来的，next是判断操作</span></span><br><span class="line"><span class="comment">// 配置全局的vue路由拦截器  导航守卫(路由守卫)</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(to)</span><br><span class="line">        <span class="comment">// 判断 是否是跳转到 admin页 如果是则必须登录才能跳转</span></span><br><span class="line">    <span class="keyword">if</span> (to.path <span class="keyword">in</span> [<span class="string">&quot;/路由地址&quot;</span>,<span class="string">&quot;/...&quot;</span>,<span class="string">&quot;/...&quot;</span>])&#123;</span><br><span class="line">        <span class="comment">//判断 是否登录</span></span><br><span class="line">        <span class="keyword">const</span> token = sessionStorage.getItem(<span class="string">&quot;token&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> (!token) &#123;</span><br><span class="line">            alert(<span class="string">&quot;没有登录，不能操作&quot;</span>)</span><br><span class="line">                <span class="comment">//跳转到登录页</span></span><br><span class="line">            next(<span class="string">&quot;/login?back=&quot;</span> + to.fullPath)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//放行</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)  </span><br></pre></td></tr></table></figure><h4 id="request请求拦截器-在请求发送前进行一些操作"><a href="#request请求拦截器-在请求发送前进行一些操作" class="headerlink" title="request请求拦截器 : 在请求发送前进行一些操作"></a>request请求拦截器 : 在请求发送前进行一些操作</h4><p>在main.js中<br>import axios from ‘axios’ //引入axios<br>Vue.prototype.$http = axios //配置</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加请求拦截器</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> token = <span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;token&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (token) &#123;</span><br><span class="line">     config.headers.token = token <span class="comment">//把token放在请求头中（headers是对象类型）</span></span><br><span class="line">     <span class="comment">// 如果后端使用了rest framework jwt，如下：</span></span><br><span class="line">   <span class="comment">//config.headers.common[&#x27;Authorization&#x27;] = &#x27;jwt &#x27; + token // 头部设置</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error) <span class="comment">//打印错误信息</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h4 id="response响应拦截器-在接收到响应后进行一些操作"><a href="#response响应拦截器-在接收到响应后进行一些操作" class="headerlink" title="response响应拦截器 : 在接收到响应后进行一些操作"></a>response响应拦截器 : 在接收到响应后进行一些操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 响应拦截器（在响应时自动会做的操作）</span></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">　　<span class="keyword">return</span> response <span class="comment">// 成功直接返回</span></span><br><span class="line">&#125;, <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error.request) <span class="comment">// 打印错误信息</span></span><br><span class="line"><span class="comment">//处理错误信息</span></span><br><span class="line">  <span class="keyword">if</span> (error.request.status === <span class="number">400</span>)&#123;  <span class="comment">// 400错误的状态码</span></span><br><span class="line">    <span class="built_in">window</span>.location.href = <span class="string">&quot;/&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> error </span><br><span class="line"><span class="comment">//返回错误信息</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、拦截器的基本介绍&quot;&gt;&lt;a href=&quot;#一、拦截器的基本介绍&quot; class=&quot;headerlink&quot; title=&quot;一、拦截器的基本介绍&quot;&gt;&lt;/a&gt;一、拦截器的基本介绍&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;什么是拦截器:&lt;ul&gt;
+&lt;li&gt;想拦截住我们的请求过程&lt;br&gt; </summary>
+      
+    
+    
+    
+    <category term="day1" scheme="https://zhang-sitong.gitee.io/blogs/categories/day1/"/>
+    
+    
+    <category term="interceptor" scheme="https://zhang-sitong.gitee.io/blogs/tags/interceptor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://zhang-sitong.gitee.io/blogs/2021/01/25/hello-world/"/>
+    <id>https://zhang-sitong.gitee.io/blogs/2021/01/25/hello-world/</id>
+    <published>2021-01-25T06:47:07.295Z</published>
+    <updated>2021-01-25T06:47:07.295Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
