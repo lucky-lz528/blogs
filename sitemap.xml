@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/about/index.html</loc>
+    
+    <lastmod>2021-01-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/index.html</loc>
     
     <lastmod>2021-01-26</lastmod>
@@ -24,13 +31,6 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/index.html</loc>
-    
-    <lastmod>2021-01-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/about/index.html</loc>
     
     <lastmod>2021-01-26</lastmod>
     
