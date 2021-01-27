@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/2021/01/27/3%E3%80%81vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%20%E5%AD%90%E7%88%B6%E7%BB%84%E4%BB%B6/</loc>
+    
+    <lastmod>2021-01-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhang-sitong.gitee.io/blogs/about/index.html</loc>
     
     <lastmod>2021-01-26</lastmod>
@@ -60,7 +67,7 @@
 
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,7 +75,7 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/vue/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -77,14 +84,21 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/day1/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/day2/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/day3/</loc>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
