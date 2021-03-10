@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>线程进程 | 欢迎来到小张的博客</title><meta name="keywords" content="实训一"><meta name="author" content="Z_SiTong"><meta name="copyright" content="Z_SiTong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="进程什么是进程 进程是资源分配的最小单位 [进程&#x3D;&#x3D;火车] 正在进行的一个过程或者说一个任务。而负责执行任务则是cpu 进程适用于CPU密集型任务  什么是多进程 同时执行多个进程，一般是同时运行多个软件   线程什么是线程 操作系统调度的最小单位，是进程的实际运作单位，进程本身是无法执行的，必须依靠线程 [线程&#x3D;&#x3D;车厢] 线程适用于IO密集型任务  什么是多线程 一个进程中同时有多个线程正在执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程进程">
+<meta property="og:url" content="https://zhang-sitong.gitee.io/blogs/2021/03/10/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B/index.html">
+<meta property="og:site_name" content="欢迎来到小张的博客">
+<meta property="og:description" content="进程什么是进程 进程是资源分配的最小单位 [进程&#x3D;&#x3D;火车] 正在进行的一个过程或者说一个任务。而负责执行任务则是cpu 进程适用于CPU密集型任务  什么是多进程 同时执行多个进程，一般是同时运行多个软件   线程什么是线程 操作系统调度的最小单位，是进程的实际运作单位，进程本身是无法执行的，必须依靠线程 [线程&#x3D;&#x3D;车厢] 线程适用于IO密集型任务  什么是多线程 一个进程中同时有多个线程正在执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/10/UmGFOig6ukYdx31.jpg">
+<meta property="article:published_time" content="2021-03-10T06:41:21.000Z">
+<meta property="article:modified_time" content="2021-03-10T13:46:18.333Z">
+<meta property="article:author" content="Z_SiTong">
+<meta property="article:tag" content="实训一">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/10/UmGFOig6ukYdx31.jpg"><link rel="shortcut icon" href="/blogs/img/favicon.png"><link rel="canonical" href="https://zhang-sitong.gitee.io/blogs/2021/03/10/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blogs/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/blogs/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+const saveToLocal = {
+  // ttl 單位是 天
+  set: function setWithExpiry(key, value, ttl) {
+    if (ttl === 0) return
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-10 21:46:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><div class="aplayer" data-id="6583040939" data-server="netease" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="auto"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.css"><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/blogs/atom.xml" title="欢迎来到小张的博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/10/UmGFOig6ukYdx31.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blogs/">欢迎来到小张的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">线程进程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2021-03-10T06:41:21.000Z" title="undefined 2021-03-10 14:41:21">2021-03-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blogs/categories/%E8%AF%BE%E5%A0%82%E6%80%BB%E7%BB%93/">课堂总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h4 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h4><ul>
+<li>进程是资源分配的最小单位 [进程==火车]</li>
+<li>正在进行的一个过程或者说一个任务。而负责执行任务则是cpu</li>
+<li>进程适用于CPU密集型任务</li>
+</ul>
+<h4 id="什么是多进程"><a href="#什么是多进程" class="headerlink" title="什么是多进程"></a>什么是多进程</h4><blockquote>
+<p>同时执行多个进程，一般是同时运行多个软件</p>
+</blockquote>
+<hr>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><ul>
+<li>操作系统调度的最小单位，是进程的实际运作单位，进程本身是无法执行的，必须依靠线程 [线程==车厢]</li>
+<li>线程适用于IO密集型任务</li>
+</ul>
+<h4 id="什么是多线程"><a href="#什么是多线程" class="headerlink" title="什么是多线程"></a>什么是多线程</h4><blockquote>
+<p>一个进程中同时有多个线程正在执行 如:去网吧上网，网吧能够让多个人同时上网</p>
+</blockquote>
+<h4 id="什么情况下使用多线程"><a href="#什么情况下使用多线程" class="headerlink" title="什么情况下使用多线程"></a>什么情况下使用多线程</h4><blockquote>
+<p>程序包含复杂的计算任务时<br>处理速度较慢的外围设备（打印）<br>程序设计自身的需要</p>
+</blockquote>
+<h4 id="为什么需要多线程"><a href="#为什么需要多线程" class="headerlink" title="为什么需要多线程"></a>为什么需要多线程</h4><ul>
+<li><p>对用户而言</p>
+<ul>
+<li>为了得到更好的系统服务</li>
+</ul>
+</li>
+<li><p>对程序自身而言</p>
+<ul>
+<li>使任务可以尽快的完成，不用等待太久的时间，更有效的利用系统资源</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在一些等待的任务上，如用户输入，文件读取等，多线程就非常有用了</p>
+</blockquote>
+<h4 id="多线程的缺点"><a href="#多线程的缺点" class="headerlink" title="多线程的缺点"></a>多线程的缺点</h4><ul>
+<li>使用太多的线程的话，会很耗费系统资源</li>
+<li>影响系统性能</li>
+<li>线程使用不当会发生很多问题的</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>多线程是异步的，其实多线程不是几个线程在同时进行，而是系统不断地在各个线程之间来回的切换，给我们造成一种同时运行的错觉</p>
+</blockquote>
+<hr>
+<ul>
+<li>单进程单线程：一个人在一个桌子上吃菜</li>
+<li>单进程多线程：多个人在同一个桌子上一起吃菜</li>
+<li>多进程单线程：每个人在自己的桌子上吃菜</li>
+</ul>
+<hr>
+<h2 id="CPU密集型"><a href="#CPU密集型" class="headerlink" title="CPU密集型"></a>CPU密集型</h2><blockquote>
+<p>一个计算为主的程序称为CPU密集型程序，多线程跑的时候，可以充分利用起所有的cpu核心，<br>比如说4个核心的cpu,开4个线程的时候，可以同时跑4个线程的运算任务，此时是最大效率<br>但是如果线程远远超出cpu核心数量 反而会使得任务效率下降，因为频繁的切换线程也是要消耗时间的<br>对于cpu密集型的任务来说，线程数等于cpu数是最好的了。</p>
+</blockquote>
+<h2 id="IO密集型"><a href="#IO密集型" class="headerlink" title="IO密集型"></a>IO密集型</h2><blockquote>
+<p>如果是一个磁盘或网络为主的程序，一个线程处在IO等待的时候，另一个线程还可以在CPU里面跑，<br>有时候CPU闲着没事干，所有的线程都在等着IO，这时候他们就是同时的了<br>IO的速度比CPU慢太多了。所以开多线程，比方说多线程网络传输，多线程往不同的目录写文件，等等<br>此时 线程数等于IO任务数是最好的</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Z_SiTong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhang-sitong.gitee.io/blogs/2021/03/10/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B/">https://zhang-sitong.gitee.io/blogs/2021/03/10/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhang-sitong.gitee.io/blogs" target="_blank">欢迎来到小张的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blogs/tags/%E5%AE%9E%E8%AE%AD%E4%B8%80/">实训一</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/10/UmGFOig6ukYdx31.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blogs/2021/03/10/python%E5%9F%BA%E7%A1%80/"><img class="prev-cover" src="https://i.loli.net/2021/03/10/KsUmutNHjhP1Bve.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python基础</div></div></a></div><div class="next-post pull-right"><a href="/blogs/2021/02/06/13%E3%80%81docker%E6%93%8D%E4%BD%9C%20%E5%AE%B9%E5%99%A8%E3%80%81%E9%95%9C%E5%83%8F%20dockerfile/"><img class="next-cover" src="https://i.loli.net/2021/02/07/fpuA4F1BEjGbWo9.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">docker操作容器、镜像 / dockerfile</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blogs/2021/03/10/python基础/" title="Python基础"><img class="cover" src="https://i.loli.net/2021/03/10/KsUmutNHjhP1Bve.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-10</div><div class="title">Python基础</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/blogs/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Z_SiTong</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.0.2.</span> <span class="toc-text">什么是多进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">什么是线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.0.2.</span> <span class="toc-text">什么是多线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.0.3.</span> <span class="toc-text">什么情况下使用多线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.0.4.</span> <span class="toc-text">为什么需要多线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">2.0.5.</span> <span class="toc-text">多线程的缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.0.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E5%AF%86%E9%9B%86%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">CPU密集型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E5%AF%86%E9%9B%86%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">IO密集型</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blogs/2021/03/10/python%E5%9F%BA%E7%A1%80/" title="Python基础"><img src="https://i.loli.net/2021/03/10/KsUmutNHjhP1Bve.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="Python基础"/></a><div class="content"><a class="title" href="/blogs/2021/03/10/python%E5%9F%BA%E7%A1%80/" title="Python基础">Python基础</a><time datetime="2021-03-10T12:54:13.000Z" title="发表于 2021-03-10 20:54:13">2021-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2021/03/10/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B/" title="线程进程"><img src="https://i.loli.net/2021/03/10/UmGFOig6ukYdx31.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="线程进程"/></a><div class="content"><a class="title" href="/blogs/2021/03/10/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E7%A8%8B/" title="线程进程">线程进程</a><time datetime="2021-03-10T06:41:21.000Z" title="发表于 2021-03-10 14:41:21">2021-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2021/02/06/13%E3%80%81docker%E6%93%8D%E4%BD%9C%20%E5%AE%B9%E5%99%A8%E3%80%81%E9%95%9C%E5%83%8F%20dockerfile/" title="docker操作容器、镜像 / dockerfile"><img src="https://i.loli.net/2021/02/07/fpuA4F1BEjGbWo9.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="docker操作容器、镜像 / dockerfile"/></a><div class="content"><a class="title" href="/blogs/2021/02/06/13%E3%80%81docker%E6%93%8D%E4%BD%9C%20%E5%AE%B9%E5%99%A8%E3%80%81%E9%95%9C%E5%83%8F%20dockerfile/" title="docker操作容器、镜像 / dockerfile">docker操作容器、镜像 / dockerfile</a><time datetime="2021-02-06T04:38:51.000Z" title="发表于 2021-02-06 12:38:51">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2021/02/05/12%E3%80%81%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/" title="视频直播"><img src="https://i.loli.net/2021/02/05/tKdkzYVFgSc7J8A.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="视频直播"/></a><div class="content"><a class="title" href="/blogs/2021/02/05/12%E3%80%81%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/" title="视频直播">视频直播</a><time datetime="2021-02-05T12:19:00.000Z" title="发表于 2021-02-05 20:19:00">2021-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2021/02/04/11%E3%80%81%E6%97%A0%E9%99%90%E6%9E%81%E5%88%86%E7%B1%BB%EF%BC%88%E8%87%AA%E5%85%B3%E8%81%94+%E9%80%92%E5%BD%92%EF%BC%89/" title="无限极分类 (自关联+递归)"><img src="https://i.loli.net/2021/02/04/aKdLr2JnHktTNFZ.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="无限极分类 (自关联+递归)"/></a><div class="content"><a class="title" href="/blogs/2021/02/04/11%E3%80%81%E6%97%A0%E9%99%90%E6%9E%81%E5%88%86%E7%B1%BB%EF%BC%88%E8%87%AA%E5%85%B3%E8%81%94+%E9%80%92%E5%BD%92%EF%BC%89/" title="无限极分类 (自关联+递归)">无限极分类 (自关联+递归)</a><time datetime="2021-02-04T11:54:35.000Z" title="发表于 2021-02-04 19:54:35">2021-02-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> Z_SiTong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blogs/js/utils.js"></script><script src="/blogs/js/main.js"></script><script src="/blogs/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>null<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
