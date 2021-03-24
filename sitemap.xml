@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/2019/03/24/WebSocket/</loc>
+    
+    <lastmod>2021-03-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhang-sitong.gitee.io/blogs/2019/03/15/%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86/</loc>
     
     <lastmod>2021-03-23</lastmod>
@@ -172,7 +179,7 @@
 
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -180,49 +187,56 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/Django/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/vue/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/Python/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -231,49 +245,56 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/Django/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/Vue/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/%E4%B8%89%E6%96%B9/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2021-03-23</lastmod>
+    <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
