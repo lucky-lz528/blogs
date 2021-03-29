@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三方支付 | 欢迎来到小张的博客</title><meta name="keywords" content="第三方"><meta name="author" content="Z_SiTong"><meta name="copyright" content="Z_SiTong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="三方支付是什么所谓第三方支付就是和一些各大银行签约，并具备一定实力和信誉保障的第三方独立机构提供的交易平台目前市面上常见的有支付宝，财付通，网银，易宝支付等，网站需要实现第三方支付首先应向第三方申请一个账号并签署协议，协议生效后第三方支付平台为其开通在线支付功能 三方支付原理1、用户通过浏览器确认订单请求2、在购物App上保存订单的数据3、购物App向浏览器发送订单确认页面4、用户通过浏览器点击确">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三方支付">
+<meta property="og:url" content="https://zhang-sitong.gitee.io/blogs/lz_5/index.html">
+<meta property="og:site_name" content="欢迎来到小张的博客">
+<meta property="og:description" content="三方支付是什么所谓第三方支付就是和一些各大银行签约，并具备一定实力和信誉保障的第三方独立机构提供的交易平台目前市面上常见的有支付宝，财付通，网银，易宝支付等，网站需要实现第三方支付首先应向第三方申请一个账号并签署协议，协议生效后第三方支付平台为其开通在线支付功能 三方支付原理1、用户通过浏览器确认订单请求2、在购物App上保存订单的数据3、购物App向浏览器发送订单确认页面4、用户通过浏览器点击确">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/29/n1MDixzjsALBNeO.jpg">
+<meta property="article:published_time" content="2019-01-29T05:20:46.000Z">
+<meta property="article:modified_time" content="2021-03-23T01:16:12.894Z">
+<meta property="article:author" content="Z_SiTong">
+<meta property="article:tag" content="第三方">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/29/n1MDixzjsALBNeO.jpg"><link rel="shortcut icon" href="/blogs/img/favicon.png"><link rel="canonical" href="https://zhang-sitong.gitee.io/blogs/lz_5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blogs/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/blogs/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+const saveToLocal = {
+  // ttl 單位是 天
+  set: function setWithExpiry(key, value, ttl) {
+    if (ttl === 0) return
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-23 09:16:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><div class="aplayer" data-id="6583040939" data-server="netease" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="auto"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.css"><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/blogs/atom.xml" title="欢迎来到小张的博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/01/29/n1MDixzjsALBNeO.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blogs/">欢迎来到小张的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">三方支付</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2019-01-29T05:20:46.000Z" title="undefined 2019-01-29 13:20:46">2019-01-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blogs/categories/%E4%B8%89%E6%96%B9/">三方</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="三方支付是什么"><a href="#三方支付是什么" class="headerlink" title="三方支付是什么"></a>三方支付是什么</h2><p>所谓第三方支付就是和一些各大银行签约，并具备一定实力和信誉保障的第三方独立机构提供的交易平台<br>目前市面上常见的有支付宝，财付通，网银，易宝支付等，网站需要实现第三方支付首先应向第三方申请一个账号并签署协议，协议生效后第三方支付平台为其开通在线支付功能</p>
+<h2 id="三方支付原理"><a href="#三方支付原理" class="headerlink" title="三方支付原理"></a>三方支付原理</h2><p>1、用户通过浏览器确认订单请求<br>2、在购物App上保存订单的数据<br>3、购物App向浏览器发送订单确认页面<br>4、用户通过浏览器点击确认支付，向支付宝发起支付请求<br>5、支付宝给用户返回一个支付页面<br>6、然后用户填写认证信息给支付宝<br>7、然后支付宝生成一个支付结果页面传给用户，购物App会得到支付宝的支付通知信息</p>
+<h2 id="支付宝三方支付原理"><a href="#支付宝三方支付原理" class="headerlink" title="支付宝三方支付原理"></a>支付宝三方支付原理</h2><h4 id="文字解说："><a href="#文字解说：" class="headerlink" title="文字解说："></a>文字解说：</h4><p>1、vue向django传递订单号和总金额<br>2、django返回给vue一个支付宝的支付地址<br>3、vue点击地址，跳转到支付宝界面<br>4、支付宝回调给vue交易号和订单号<br>5、vue再向django发送支付宝交易号和订单号</p>
+<h4 id="图片解说："><a href="#图片解说：" class="headerlink" title="图片解说："></a>图片解说：</h4><p><img src="https://i.loli.net/2021/01/29/m4NopzTGHkvYZg2.png" alt="三方支付流程图.png"></p>
+<hr>
+<h2 id="支付宝三方支付图文解说（-前后端代码）"><a href="#支付宝三方支付图文解说（-前后端代码）" class="headerlink" title="支付宝三方支付图文解说（+前后端代码）"></a>支付宝三方支付图文解说（+前后端代码）</h2><h4 id="1、首先进入支付宝开放平台-–-gt-https-open-alipay-com-index-htm"><a href="#1、首先进入支付宝开放平台-–-gt-https-open-alipay-com-index-htm" class="headerlink" title="1、首先进入支付宝开放平台 –&gt; https://open.alipay.com/index.htm"></a>1、首先进入支付宝开放平台 –&gt; <a target="_blank" rel="noopener" href="https://open.alipay.com/index.htm">https://open.alipay.com/index.htm</a></h4><p><img src="https://i.loli.net/2021/01/29/mQB6jY1No9KIcLM.png" alt="支付宝开放平台.png"></p>
+<h4 id="2、登录后点击研发服务"><a href="#2、登录后点击研发服务" class="headerlink" title="2、登录后点击研发服务"></a>2、登录后点击研发服务</h4><p><img src="https://i.loli.net/2021/01/29/V39bsL4aUHhq6uz.png" alt="研发服务.png"></p>
+<h4 id="3、获得沙盒的APPID以及RSA2（支付宝公钥）"><a href="#3、获得沙盒的APPID以及RSA2（支付宝公钥）" class="headerlink" title="3、获得沙盒的APPID以及RSA2（支付宝公钥）"></a>3、获得沙盒的APPID以及RSA2（支付宝公钥）</h4><p><img src="https://i.loli.net/2021/01/29/BJ1njbp6muVGStl.png" alt="沙箱.png"></p>
+<h4 id="4、然后利用支付宝开放平台开发助手生成密钥"><a href="#4、然后利用支付宝开放平台开发助手生成密钥" class="headerlink" title="4、然后利用支付宝开放平台开发助手生成密钥"></a>4、然后利用支付宝开放平台开发助手生成密钥</h4><p><img src="https://i.loli.net/2021/01/29/Q1efpdSjGx3H2t4.png" alt="生成密钥.png"></p>
+<h4 id="5、把支付宝开放平台开发助手生成的应用公钥复制到RSA2的应用公钥中（自动生成支付宝公钥）"><a href="#5、把支付宝开放平台开发助手生成的应用公钥复制到RSA2的应用公钥中（自动生成支付宝公钥）" class="headerlink" title="5、把支付宝开放平台开发助手生成的应用公钥复制到RSA2的应用公钥中（自动生成支付宝公钥）"></a>5、把支付宝开放平台开发助手生成的应用公钥复制到RSA2的应用公钥中（自动生成支付宝公钥）</h4><p><img src="https://i.loli.net/2021/01/29/gqxbAa9QZolBRKe.png" alt="生成应用公钥.png"><br><img src="https://i.loli.net/2021/01/29/Wn84vAHb3xl59jF.png" alt="开方平台应用公钥.png"></p>
+<h4 id="6、去Django操作"><a href="#6、去Django操作" class="headerlink" title="6、去Django操作"></a>6、去Django操作</h4><ul>
+<li><p>下载模块：pip install python-alipay-sdk -upgrade  # 安装python-alipay-sdk模块</p>
+</li>
+<li><p>在app下创建文件夹保存公钥和私钥（公钥–RSA2中的支付宝公钥，私钥–支付宝开放平台开发助手中的应用私钥）</p>
+<p><img src="https://i.loli.net/2021/01/29/Zzd4kpJnbqra7Xj.png" alt="保存公钥私钥.png"></p>
+</li>
+<li><p>在views中写以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class PayView(APIView):</span><br><span class="line">    def post(self, request):</span><br><span class="line">        sn = request.data.get(&quot;sn&quot;)  # 订单号</span><br><span class="line">        total = request.data.get(&quot;total&quot;)  # 总金额</span><br><span class="line"></span><br><span class="line">        alipay_public_key = open(&quot;ThreePayment/alipay/alipay_public_key.txt&quot;).read()  # 支付宝公钥</span><br><span class="line">        app_private_key = open(&quot;ThreePayment/alipay/app_private_key.txt&quot;).read()  # 应用私钥</span><br><span class="line"></span><br><span class="line">        alipay = AliPay(</span><br><span class="line">            appid=<span class="string">&quot;2021000116660428&quot;</span>,</span><br><span class="line">            app_notify_url=None,  # 默认回调url</span><br><span class="line">            app_private_key_string=app_private_key,</span><br><span class="line">            # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,</span><br><span class="line">            alipay_public_key_string=alipay_public_key,</span><br><span class="line">            sign_type=&quot;RSA2&quot;,  # RSA 或者 RSA2</span><br><span class="line">            debug=True,  # 默认False</span><br><span class="line">            config=AliPayConfig(timeout=15)  # 可选, 请求超时时间</span><br><span class="line">        )</span><br><span class="line">        # 如果你是 Python 3的用户，使用默认的字符串即可</span><br><span class="line">        subject = <span class="string">&quot;测试订单支付&quot;</span></span><br><span class="line"></span><br><span class="line">        # 电脑网站支付，需要跳转到https://openapi.alipay.com/gateway.do? + order_string</span><br><span class="line">        order_string = alipay.api_alipay_trade_page_pay(</span><br><span class="line">            out_trade_no=sn,  # 订单号</span><br><span class="line">            total_amount=total,  # 总金额</span><br><span class="line">            subject=subject,  # 标题</span><br><span class="line">            return_url=<span class="string">&#x27;http://localhost:8000/back&#x27;</span>,</span><br><span class="line">            # notify_url=&quot;https://example.com/notify&quot;  # 可选, 不填则使用默认notify url</span><br><span class="line">        )</span><br><span class="line">        print(sn)</span><br><span class="line">        # 生成一个支付超链接，返回给vue端， 点击就激活这个超链接, 就是支付宝网关</span><br><span class="line">        url = <span class="string">&quot;https://openapi.alipaydev.com/gateway.do?&quot;</span> + order_string</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;url&quot;</span>: url&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class AliPayBackView(View):</span><br><span class="line">    def get(self, request):</span><br><span class="line">        #  获取 支付宝交易号</span><br><span class="line">        trade_no = request.GET.get(<span class="string">&quot;trade_no&quot;</span>)</span><br><span class="line">        print(<span class="string">&quot;trade_no:&quot;</span>, trade_no)</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&quot;http://127.0.0.1:8080/#/paysuccess?trade_no=&quot;</span> + trade_no)</span><br></pre></td></tr></table></figure>
+<h4 id="7、vue操作"><a href="#7、vue操作" class="headerlink" title="7、vue操作"></a>7、vue操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;button @click=<span class="string">&quot;dj&quot;</span>&gt;点击&lt;/button&gt;</span><br><span class="line">    &lt;a :href=<span class="string">&quot;url&quot;</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;@/assets/支付宝图标.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>  </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            url:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        <span class="function"><span class="title">dj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.$axios(&#123;</span><br><span class="line">            <span class="string">&quot;url&quot;</span>:<span class="string">&quot;pay&quot;</span>,</span><br><span class="line">            <span class="string">&quot;method&quot;</span>:<span class="string">&quot;POST&quot;</span>,</span><br><span class="line">            <span class="string">&quot;data&quot;</span>:&#123;</span><br><span class="line">                <span class="string">&quot;sn&quot;</span>:<span class="number">20030528</span>,  <span class="comment">// 订单号</span></span><br><span class="line">                <span class="string">&quot;total&quot;</span>:<span class="number">0.01</span>,   <span class="comment">// 总金额</span></span><br><span class="line">            &#125;</span><br><span class="line">            &#125;).then(<span class="function"><span class="params">resp</span>=&gt;</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(resp.data)</span><br><span class="line">                 <span class="built_in">this</span>.url=resp.data.url</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p><code>PS：按照步骤下来支付宝三方支付就完成啦</code><br><code>下面附上成功截图：</code><br><img src="https://i.loli.net/2021/01/29/k5eRXSEIPU3DWLC.png" alt="成功1.png"><br><img src="https://i.loli.net/2021/01/29/BPc3AO2gLNEh9kr.png" alt="成功2.png"><br><img src="https://i.loli.net/2021/01/29/He1ouan7PV5xi8s.png" alt="成功3.png"><br><img src="https://i.loli.net/2021/01/29/zCdJ7AqvILXQS1h.png" alt="成功4.png"><br><code>如要查看完整版，请点击下面链接哟</code><br>Django-git地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhang-sitong/blog-django-demo">https://gitee.com/zhang-sitong/blog-django-demo</a><br>Vue-git地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhang-sitong/blog-vue-demo">https://gitee.com/zhang-sitong/blog-vue-demo</a></p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Z_SiTong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhang-sitong.gitee.io/blogs/lz_5/">https://zhang-sitong.gitee.io/blogs/lz_5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhang-sitong.gitee.io/blogs" target="_blank">欢迎来到小张的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blogs/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/">第三方</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/01/29/n1MDixzjsALBNeO.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blogs/lz_6/"><img class="prev-cover" src="https://i.loli.net/2021/01/30/b9kuajXWmZtT3Sz.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">celery异步框架(5.0)</div></div></a></div><div class="next-post pull-right"><a href="/blogs/lz_4/"><img class="next-cover" src="https://i.loli.net/2021/01/28/cEbYxmhdIV25vDr.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">微博三方登陆</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blogs/lz_4/" title="微博三方登陆"><img class="cover" src="https://i.loli.net/2021/01/28/cEbYxmhdIV25vDr.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-28</div><div class="title">微博三方登陆</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/blogs/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Z_SiTong</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">三方支付是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">三方支付原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E4%BB%98%E5%AE%9D%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">支付宝三方支付原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E8%A7%A3%E8%AF%B4%EF%BC%9A"><span class="toc-number">3.0.1.</span> <span class="toc-text">文字解说：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E8%A7%A3%E8%AF%B4%EF%BC%9A"><span class="toc-number">3.0.2.</span> <span class="toc-text">图片解说：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E4%BB%98%E5%AE%9D%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E5%9B%BE%E6%96%87%E8%A7%A3%E8%AF%B4%EF%BC%88-%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">支付宝三方支付图文解说（+前后端代码）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%A6%96%E5%85%88%E8%BF%9B%E5%85%A5%E6%94%AF%E4%BB%98%E5%AE%9D%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0-%E2%80%93-gt-https-open-alipay-com-index-htm"><span class="toc-number">4.0.1.</span> <span class="toc-text">1、首先进入支付宝开放平台 –&gt; https:&#x2F;&#x2F;open.alipay.com&#x2F;index.htm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E7%99%BB%E5%BD%95%E5%90%8E%E7%82%B9%E5%87%BB%E7%A0%94%E5%8F%91%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.0.2.</span> <span class="toc-text">2、登录后点击研发服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%8E%B7%E5%BE%97%E6%B2%99%E7%9B%92%E7%9A%84APPID%E4%BB%A5%E5%8F%8ARSA2%EF%BC%88%E6%94%AF%E4%BB%98%E5%AE%9D%E5%85%AC%E9%92%A5%EF%BC%89"><span class="toc-number">4.0.3.</span> <span class="toc-text">3、获得沙盒的APPID以及RSA2（支付宝公钥）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E7%84%B6%E5%90%8E%E5%88%A9%E7%94%A8%E6%94%AF%E4%BB%98%E5%AE%9D%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E5%8A%A9%E6%89%8B%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5"><span class="toc-number">4.0.4.</span> <span class="toc-text">4、然后利用支付宝开放平台开发助手生成密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E6%8A%8A%E6%94%AF%E4%BB%98%E5%AE%9D%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E5%8A%A9%E6%89%8B%E7%94%9F%E6%88%90%E7%9A%84%E5%BA%94%E7%94%A8%E5%85%AC%E9%92%A5%E5%A4%8D%E5%88%B6%E5%88%B0RSA2%E7%9A%84%E5%BA%94%E7%94%A8%E5%85%AC%E9%92%A5%E4%B8%AD%EF%BC%88%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%94%AF%E4%BB%98%E5%AE%9D%E5%85%AC%E9%92%A5%EF%BC%89"><span class="toc-number">4.0.5.</span> <span class="toc-text">5、把支付宝开放平台开发助手生成的应用公钥复制到RSA2的应用公钥中（自动生成支付宝公钥）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E5%8E%BBDjango%E6%93%8D%E4%BD%9C"><span class="toc-number">4.0.6.</span> <span class="toc-text">6、去Django操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81vue%E6%93%8D%E4%BD%9C"><span class="toc-number">4.0.7.</span> <span class="toc-text">7、vue操作</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blogs/%E6%80%BB%E7%BB%93/" title="总结"><img src="https://i.loli.net/2021/03/29/nHq2BC7guU9e4cP.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="总结"/></a><div class="content"><a class="title" href="/blogs/%E6%80%BB%E7%BB%93/" title="总结">总结</a><time datetime="2019-03-28T06:10:52.000Z" title="发表于 2019-03-28 14:10:52">2019-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/lz_19/" title="WebSocket与Http"><img src="https://i.loli.net/2021/03/24/5IZl9AO2XLnjiWM.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="WebSocket与Http"/></a><div class="content"><a class="title" href="/blogs/lz_19/" title="WebSocket与Http">WebSocket与Http</a><time datetime="2019-03-24T06:10:52.000Z" title="发表于 2019-03-24 14:10:52">2019-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/lz_18/" title="MySQL和NoSQL"><img src="https://i.loli.net/2021/03/21/BNz2vCwnVTsXHrf.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="MySQL和NoSQL"/></a><div class="content"><a class="title" href="/blogs/lz_18/" title="MySQL和NoSQL">MySQL和NoSQL</a><time datetime="2019-03-21T13:18:44.000Z" title="发表于 2019-03-21 21:18:44">2019-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/lz_17/" title="MongoDB安装及使用"><img src="https://i.loli.net/2021/03/17/7x6uAiswPjbJknS.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="MongoDB安装及使用"/></a><div class="content"><a class="title" href="/blogs/lz_17/" title="MongoDB安装及使用">MongoDB安装及使用</a><time datetime="2019-03-18T11:16:58.000Z" title="发表于 2019-03-18 19:16:58">2019-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/lz_16/" title="上下文管理"><img src="https://i.loli.net/2021/03/23/KM1mN2wtGXSukBd.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="上下文管理"/></a><div class="content"><a class="title" href="/blogs/lz_16/" title="上下文管理">上下文管理</a><time datetime="2019-03-15T11:54:13.000Z" title="发表于 2019-03-15 19:54:13">2019-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> Z_SiTong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blogs/js/utils.js"></script><script src="/blogs/js/main.js"></script><script src="/blogs/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>null<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
