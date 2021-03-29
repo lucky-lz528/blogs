@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>webshell | 欢迎来到小张的博客</title><meta name="keywords" content="工具 网页脚本"><meta name="author" content="Z_SiTong"><meta name="copyright" content="Z_SiTong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="webshell 什么是webshell 顾名思义，”web” - 显然需要服务器开放web服务,”shell” - 取得对服务器某种程度上操作权限webshell常常被称为匿名用户(入侵者)通过web服务端口对web服务器有某种程度上操作的权限,由于其大多是以网页脚本的形式出现，也有人称之为网站后门工具    浏览器实现xshell的功能，实现黑窗口  什么是shell？ shell是一个集成了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webshell">
+<meta property="og:url" content="https://zhang-sitong.gitee.io/blogs/2019/02/03/lz_10/index.html">
+<meta property="og:site_name" content="欢迎来到小张的博客">
+<meta property="og:description" content="webshell 什么是webshell 顾名思义，”web” - 显然需要服务器开放web服务,”shell” - 取得对服务器某种程度上操作权限webshell常常被称为匿名用户(入侵者)通过web服务端口对web服务器有某种程度上操作的权限,由于其大多是以网页脚本的形式出现，也有人称之为网站后门工具    浏览器实现xshell的功能，实现黑窗口  什么是shell？ shell是一个集成了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/03/eAlR4OJSjo6GWTD.jpg">
+<meta property="article:published_time" content="2019-02-03T08:04:37.000Z">
+<meta property="article:modified_time" content="2021-03-23T01:16:12.590Z">
+<meta property="article:author" content="Z_SiTong">
+<meta property="article:tag" content="工具 网页脚本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/03/eAlR4OJSjo6GWTD.jpg"><link rel="shortcut icon" href="/blogs/img/favicon.png"><link rel="canonical" href="https://zhang-sitong.gitee.io/blogs/2019/02/03/lz_10/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blogs/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/blogs/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+const saveToLocal = {
+  // ttl 單位是 天
+  set: function setWithExpiry(key, value, ttl) {
+    if (ttl === 0) return
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-23 09:16:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><div class="aplayer" data-id="6583040939" data-server="netease" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="auto"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.css"><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/blogs/atom.xml" title="欢迎来到小张的博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/02/03/eAlR4OJSjo6GWTD.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blogs/">欢迎来到小张的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">webshell</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2019-02-03T08:04:37.000Z" title="undefined 2019-02-03 16:04:37">2019-02-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/">工具 网页脚本</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><ul>
+<li><h4 id="什么是webshell"><a href="#什么是webshell" class="headerlink" title="什么是webshell"></a>什么是webshell</h4><blockquote>
+<p>顾名思义，”web” - 显然需要服务器开放web服务,”shell” - 取得对服务器某种程度上操作权限<br>webshell常常被称为匿名用户(入侵者)通过web服务端口对web服务器有某种程度上操作的权限,由于其大多是以网页脚本的形式出现，也有人称之为网站后门工具</p>
+</blockquote>
+</li>
+</ul>
+<p><code>浏览器实现xshell的功能，实现黑窗口</code></p>
+<ul>
+<li><h4 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h4><ul>
+<li>shell是一个集成了一堆linux命令的控制台界面</li>
+</ul>
+</li>
+<li><h4 id="shell只有这一种吗？"><a href="#shell只有这一种吗？" class="headerlink" title="shell只有这一种吗？"></a>shell只有这一种吗？</h4><ol>
+<li>SH：编程方面相当优秀，输入命令优秀</li>
+<li>BASH：Linux系统中一个默认的Shell，命令特别多</li>
+</ol>
+</li>
+</ul>
+<h2 id="webshell的优点"><a href="#webshell的优点" class="headerlink" title="webshell的优点"></a>webshell的优点</h2><blockquote>
+<p>webshell 最大的优点就是可以穿越防火墙，由于与被控制的服务器或远程主机交换的数据都是通过80端口传递的，因此不会被防火墙拦截。并且使用webshell一般不会在系统日志中留下记录，只会在网站的web日志中留下一些数据提交记录，没有经验的管理员是很难看出入侵痕迹的</p>
+</blockquote>
+<h2 id="webshell的分类"><a href="#webshell的分类" class="headerlink" title="webshell的分类"></a>webshell的分类</h2><ul>
+<li><h4 id="根据文件大小分类"><a href="#根据文件大小分类" class="headerlink" title="根据文件大小分类"></a>根据文件大小分类</h4><ul>
+<li>大马<br><code>体积大，包含很多功能</code><br><code>通常会调用系统的关键函数</code><br><code>通常以代码加密隐藏</code></li>
+<li>小马<br><code>一句话木马也称为小马，即整个shell代码量只有一行，一般时系统执行函数</code></li>
+</ul>
+</li>
+<li><h4 id="根据脚本名称分类"><a href="#根据脚本名称分类" class="headerlink" title="根据脚本名称分类"></a>根据脚本名称分类</h4><ul>
+<li>jsp、asp、aspx、php</li>
+</ul>
+</li>
+</ul>
+<h2 id="webshell的功能"><a href="#webshell的功能" class="headerlink" title="webshell的功能"></a>webshell的功能</h2><ul>
+<li><h4 id="站长工具"><a href="#站长工具" class="headerlink" title="站长工具"></a>站长工具</h4><blockquote>
+<p>Webshell被站长常常用于网站管理、服务器管理等，根据FSO权限的不同，作用有在线编辑网页脚本、上传下载文件、查看数据库、执行任意程序命令等</p>
+</blockquote>
+</li>
+<li><h4 id="持续远程访问"><a href="#持续远程访问" class="headerlink" title="持续远程访问"></a>持续远程访问</h4><blockquote>
+<p>入侵者可以利用从而达到长期控制网站服务器的目的，若攻击者自行修复了漏洞，以确保没有其他人会利用该漏洞，攻击者可以低调的随时控制服务器。一些流行的webshell使用密码验证和其他技术来确保只有上传webshell的攻击者才能访问它</p>
+</blockquote>
+</li>
+<li><h4 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h4><blockquote>
+<p>在服务器没有配置错误的情况下，webshell将在web服务器的用户权限下运行，该用户权限是有限的。通过使用webshell，攻击者可以尝试通过利用系统上的本地漏洞来执行权限提升</p>
+</blockquote>
+</li>
+<li><h4 id="极强的隐蔽性"><a href="#极强的隐蔽性" class="headerlink" title="极强的隐蔽性"></a>极强的隐蔽性</h4><blockquote>
+<p>有些恶意网页脚本可以嵌套在正常网页中运行，且不容易被查杀。webshell还可以穿越服务器防火墙，由于与被控制的服务器或远程主机交互的数据都是通过80端口传递，因此不会被防火墙拦截，在没有记录流量的情况下，webshell使用post包发送，也不会被记录在系统日志中，只会在web日志中记录一些数据提交的记录</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="Vue端"><a href="#Vue端" class="headerlink" title="Vue端"></a>Vue端</h2><ul>
+<li><h4 id="安装xterm"><a href="#安装xterm" class="headerlink" title="安装xterm"></a>安装xterm</h4><blockquote>
+<p>cnpm install <a href="mailto:&#120;&#116;&#x65;&#x72;&#x6d;&#x40;&#51;&#46;&#49;&#46;&#x30;">&#120;&#116;&#x65;&#x72;&#x6d;&#x40;&#51;&#46;&#49;&#46;&#x30;</a> –save</p>
+</blockquote>
+</li>
+<li><h4 id="导入css样式，main-js"><a href="#导入css样式，main-js" class="headerlink" title="导入css样式，main.js"></a>导入css样式，main.js</h4><blockquote>
+<p>import ‘xterm/dist/xterm.css’ // 看这里，添加xterm css文件样式</p>
+</blockquote>
+</li>
+<li><h4 id="在页面里放入一个id对的上的div"><a href="#在页面里放入一个id对的上的div" class="headerlink" title="在页面里放入一个id对的上的div"></a>在页面里放入一个id对的上的div</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;terminal&quot;</span>&gt;</span><br><span class="line">&lt;!--            黑窗口--&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="添加插件"><a href="#添加插件" class="headerlink" title="添加插件"></a>添加插件</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Terminal &#125; <span class="keyword">from</span> <span class="string">&#x27;xterm&#x27;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> attach <span class="keyword">from</span> <span class="string">&#x27;xterm/lib/addons/attach/attach&#x27;</span> <span class="comment">// 安装插件适，可以使用attach去添加</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> fit <span class="keyword">from</span> <span class="string">&#x27;xterm/lib/addons/fit/fit&#x27;</span> <span class="comment">// fit进行自适应大小的</span></span><br><span class="line"></span><br><span class="line">Terminal.applyAddon(attach) <span class="comment">// 添加插件</span></span><br><span class="line">Terminal.applyAddon(fit) <span class="comment">// 添加插件</span></span><br></pre></td></tr></table></figure></li>
+<li><h4 id="mounted初始化div标签id为terminal对象，成为一个真正的黑窗口"><a href="#mounted初始化div标签id为terminal对象，成为一个真正的黑窗口" class="headerlink" title="mounted初始化div标签id为terminal对象，成为一个真正的黑窗口"></a>mounted初始化div标签id为terminal对象，成为一个真正的黑窗口</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取到了div标签</span></span><br><span class="line">        <span class="keyword">let</span> terminalContainer = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;terminal&#x27;</span>)</span><br><span class="line">        <span class="comment">// 初始化黑窗口对象</span></span><br><span class="line">        <span class="built_in">this</span>.term = <span class="keyword">new</span> Terminal(<span class="built_in">this</span>.terminal)</span><br><span class="line">        <span class="comment">// 打开这个对象</span></span><br><span class="line">        <span class="built_in">this</span>.term.open(terminalContainer)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://127.0.0.1:8000/webssh/&#x27;</span>)</span><br><span class="line">        <span class="built_in">this</span>.terminalSocket = <span class="keyword">new</span> WebSocket(<span class="string">&#x27;ws://127.0.0.1:8000/webssh/&#x27;</span>)</span><br><span class="line">        <span class="built_in">this</span>.terminalSocket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 连接成功触发该方法</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;websocket is Connected...&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.terminalSocket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 连接关闭适触发的方法</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;websocket is Closed...&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.terminalSocket.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 连接出错触发的方法</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;damn Websocket is broken!&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.term.attach(<span class="built_in">this</span>.terminalSocket)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Django端"><a href="#Django端" class="headerlink" title="Django端"></a>Django端</h2><ul>
+<li><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><blockquote>
+<p>pip install dwebsocket <code>让django支持ws连接</code><br>pip install paramiko <code>连接远程服务器</code></p>
+</blockquote>
+</li>
+<li><h4 id="paramiko连接linux"><a href="#paramiko连接linux" class="headerlink" title="paramiko连接linux"></a>paramiko连接linux</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dwebsocket <span class="keyword">import</span> accept_websocket</span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line">def make_ssh(host, username, password, port=<span class="number">22</span>):</span><br><span class="line">    <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">    :host 主机地址</span></span><br><span class="line"><span class="string">    :username 用户名，一般是root</span></span><br><span class="line"><span class="string">    :password 密码</span></span><br><span class="line"><span class="string">    :port ssh协议的端口,22</span></span><br><span class="line"><span class="string">    &quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">    # 初始化一个ssh对象</span><br><span class="line">    sh = paramiko.SSHClient()</span><br><span class="line">    # 设置对象连接密钥规则</span><br><span class="line">    sh.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">    # 连接</span><br><span class="line">    sh.connect(host, username=username, password=password)</span><br><span class="line">    # 生成shell对象，把命令执行结果，模拟成一个终端的返回，带上花里胡哨的颜色</span><br><span class="line">    channle = sh.invoke_shell(term=<span class="string">&#x27;xterm&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> channle</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="创建子线程-接收远程服务器"><a href="#创建子线程-接收远程服务器" class="headerlink" title="创建子线程 接收远程服务器"></a>创建子线程 接收远程服务器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def recv_ssh_msg(channle, ws):</span><br><span class="line">    <span class="string">&#x27;&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">        channle: 建立好的SSH连接通道</span></span><br><span class="line"><span class="string">        这个函数会不停的接收ssh通道返回的命令</span></span><br><span class="line"><span class="string">        返回到前端的ws套接字里</span></span><br><span class="line"><span class="string">    &#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line">    # 判断shell连接对象是否没有退出</span><br><span class="line">    <span class="keyword">while</span> not channle.exit_status_ready():</span><br><span class="line">      	# 接收过程可能会因为没有任何返回而报错</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            buf = channle.recv(1024) # 接收命令的执行结果</span><br><span class="line">            ws.send(buf) # 向Websocket通道返回</span><br><span class="line">        # 接收不到会报错，但是报错没关系，继续重新尝试接受</span><br><span class="line">        except:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure></li>
+<li><h4 id="创建视图函数进行连接"><a href="#创建视图函数进行连接" class="headerlink" title="创建视图函数进行连接"></a>创建视图函数进行连接</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line">@accept_websocket</span><br><span class="line">def webssh(request):</span><br><span class="line">    <span class="keyword">if</span> request.is_websocket:</span><br><span class="line">        # 1. 获取到连接对象</span><br><span class="line">        ws = request.websocket</span><br><span class="line">        # 2. 初始化linux连接</span><br><span class="line">        channel = make_ssh()</span><br><span class="line">        # 3. 初始化linux数据接收线程，并开启</span><br><span class="line">        recv_thread = Thread(target=recv_ssh_msg, args=(channel, ws))</span><br><span class="line">        recv_thread.start()</span><br><span class="line">        while 1:  # 主线程: 只管发送</span><br><span class="line">            # 2. 阻塞ws接收发来的数据</span><br><span class="line">            cmd = ws.wait()</span><br><span class="line">            # cmd = ws.recv()</span><br><span class="line">            <span class="keyword">if</span> cmd:</span><br><span class="line">                channel.send(cmd)  # 发送到linux 去执行</span><br><span class="line">            else:  # 如果连接断开，那么cmd将会发一个空包</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        recv_thread.join()  # 回收子线程</span><br><span class="line">        ws.close()  # 关闭ws连接</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>将会得到这个效果：<br><img src="https://i.loli.net/2021/02/03/je5wQRCZbX8WsrT.png" alt="webshell.png"></p>
+<blockquote>
+<p>本篇博客就写到这里啦 欢迎广大网友们进行留言或者补充哦</p>
+</blockquote>
+<p><code>下面提供前后端链接地址</code></p>
+<h4 id="Django-git地址：https-gitee-com-zhang-sitong-blog-django-demo"><a href="#Django-git地址：https-gitee-com-zhang-sitong-blog-django-demo" class="headerlink" title="Django-git地址：https://gitee.com/zhang-sitong/blog-django-demo"></a>Django-git地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhang-sitong/blog-django-demo">https://gitee.com/zhang-sitong/blog-django-demo</a></h4><h4 id="Vue-git地址：https-gitee-com-zhang-sitong-blog-vue-demo"><a href="#Vue-git地址：https-gitee-com-zhang-sitong-blog-vue-demo" class="headerlink" title="Vue-git地址：https://gitee.com/zhang-sitong/blog-vue-demo"></a>Vue-git地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhang-sitong/blog-vue-demo">https://gitee.com/zhang-sitong/blog-vue-demo</a></h4></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Z_SiTong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhang-sitong.gitee.io/blogs/2019/02/03/lz_10/">https://zhang-sitong.gitee.io/blogs/2019/02/03/lz_10/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhang-sitong.gitee.io/blogs" target="_blank">欢迎来到小张的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/">工具 网页脚本</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/03/eAlR4OJSjo6GWTD.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blogs/2019/02/04/lz_11/"><img class="prev-cover" src="https://i.loli.net/2021/02/04/aKdLr2JnHktTNFZ.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">无限极分类 (自关联+递归)</div></div></a></div><div class="next-post pull-right"><a href="/blogs/2019/02/02/lz_9/"><img class="next-cover" src="https://i.loli.net/2021/02/02/bGkq4nN38tABerD.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">redis键空间事件</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/blogs/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Z_SiTong</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">1.</span> <span class="toc-text">webshell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFwebshell"><span class="toc-number">1.0.1.</span> <span class="toc-text">什么是webshell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFshell%EF%BC%9F"><span class="toc-number">1.0.2.</span> <span class="toc-text">什么是shell？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell%E5%8F%AA%E6%9C%89%E8%BF%99%E4%B8%80%E7%A7%8D%E5%90%97%EF%BC%9F"><span class="toc-number">1.0.3.</span> <span class="toc-text">shell只有这一种吗？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">webshell的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">webshell的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%88%86%E7%B1%BB"><span class="toc-number">3.0.1.</span> <span class="toc-text">根据文件大小分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E8%84%9A%E6%9C%AC%E5%90%8D%E7%A7%B0%E5%88%86%E7%B1%BB"><span class="toc-number">3.0.2.</span> <span class="toc-text">根据脚本名称分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">webshell的功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%99%E9%95%BF%E5%B7%A5%E5%85%B7"><span class="toc-number">4.0.1.</span> <span class="toc-text">站长工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE"><span class="toc-number">4.0.2.</span> <span class="toc-text">持续远程访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">4.0.3.</span> <span class="toc-text">权限提升</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%81%E5%BC%BA%E7%9A%84%E9%9A%90%E8%94%BD%E6%80%A7"><span class="toc-number">4.0.4.</span> <span class="toc-text">极强的隐蔽性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E7%AB%AF"><span class="toc-number">5.</span> <span class="toc-text">Vue端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85xterm"><span class="toc-number">5.0.1.</span> <span class="toc-text">安装xterm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5css%E6%A0%B7%E5%BC%8F%EF%BC%8Cmain-js"><span class="toc-number">5.0.2.</span> <span class="toc-text">导入css样式，main.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E9%A1%B5%E9%9D%A2%E9%87%8C%E6%94%BE%E5%85%A5%E4%B8%80%E4%B8%AAid%E5%AF%B9%E7%9A%84%E4%B8%8A%E7%9A%84div"><span class="toc-number">5.0.3.</span> <span class="toc-text">在页面里放入一个id对的上的div</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6"><span class="toc-number">5.0.4.</span> <span class="toc-text">添加插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mounted%E5%88%9D%E5%A7%8B%E5%8C%96div%E6%A0%87%E7%AD%BEid%E4%B8%BAterminal%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%BB%91%E7%AA%97%E5%8F%A3"><span class="toc-number">5.0.5.</span> <span class="toc-text">mounted初始化div标签id为terminal对象，成为一个真正的黑窗口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django%E7%AB%AF"><span class="toc-number">6.</span> <span class="toc-text">Django端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">6.0.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#paramiko%E8%BF%9E%E6%8E%A5linux"><span class="toc-number">6.0.2.</span> <span class="toc-text">paramiko连接linux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AD%90%E7%BA%BF%E7%A8%8B-%E6%8E%A5%E6%94%B6%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">6.0.3.</span> <span class="toc-text">创建子线程 接收远程服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E8%BF%9E%E6%8E%A5"><span class="toc-number">6.0.4.</span> <span class="toc-text">创建视图函数进行连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Django-git%E5%9C%B0%E5%9D%80%EF%BC%9Ahttps-gitee-com-zhang-sitong-blog-django-demo"><span class="toc-number">6.0.5.</span> <span class="toc-text">Django-git地址：https:&#x2F;&#x2F;gitee.com&#x2F;zhang-sitong&#x2F;blog-django-demo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue-git%E5%9C%B0%E5%9D%80%EF%BC%9Ahttps-gitee-com-zhang-sitong-blog-vue-demo"><span class="toc-number">6.0.6.</span> <span class="toc-text">Vue-git地址：https:&#x2F;&#x2F;gitee.com&#x2F;zhang-sitong&#x2F;blog-vue-demo</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/28/%E6%80%BB%E7%BB%93/" title="总结"><img src="https://i.loli.net/2021/03/29/nHq2BC7guU9e4cP.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="总结"/></a><div class="content"><a class="title" href="/blogs/2019/03/28/%E6%80%BB%E7%BB%93/" title="总结">总结</a><time datetime="2019-03-28T06:10:52.000Z" title="发表于 2019-03-28 14:10:52">2019-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/24/lz_19/" title="WebSocket与Http"><img src="https://i.loli.net/2021/03/24/5IZl9AO2XLnjiWM.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="WebSocket与Http"/></a><div class="content"><a class="title" href="/blogs/2019/03/24/lz_19/" title="WebSocket与Http">WebSocket与Http</a><time datetime="2019-03-24T06:10:52.000Z" title="发表于 2019-03-24 14:10:52">2019-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/21/lz_18/" title="MySQL和NoSQL"><img src="https://i.loli.net/2021/03/21/BNz2vCwnVTsXHrf.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="MySQL和NoSQL"/></a><div class="content"><a class="title" href="/blogs/2019/03/21/lz_18/" title="MySQL和NoSQL">MySQL和NoSQL</a><time datetime="2019-03-21T13:18:44.000Z" title="发表于 2019-03-21 21:18:44">2019-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/18/lz_17/" title="MongoDB安装及使用"><img src="https://i.loli.net/2021/03/17/7x6uAiswPjbJknS.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="MongoDB安装及使用"/></a><div class="content"><a class="title" href="/blogs/2019/03/18/lz_17/" title="MongoDB安装及使用">MongoDB安装及使用</a><time datetime="2019-03-18T11:16:58.000Z" title="发表于 2019-03-18 19:16:58">2019-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/15/lz_16/" title="上下文管理"><img src="https://i.loli.net/2021/03/23/KM1mN2wtGXSukBd.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="上下文管理"/></a><div class="content"><a class="title" href="/blogs/2019/03/15/lz_16/" title="上下文管理">上下文管理</a><time datetime="2019-03-15T11:54:13.000Z" title="发表于 2019-03-15 19:54:13">2019-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> Z_SiTong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blogs/js/utils.js"></script><script src="/blogs/js/main.js"></script><script src="/blogs/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>null<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

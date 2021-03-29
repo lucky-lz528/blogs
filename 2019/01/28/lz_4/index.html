@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>微博三方登陆 | 欢迎来到小张的博客</title><meta name="keywords" content="第三方"><meta name="author" content="Z_SiTong"><meta name="copyright" content="Z_SiTong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="微博登录介绍微博登录包括身份认证、用户关系以及内容传播。允许用户使用微博帐号登录访问第三方网站，分享内容，同步信息 什么是第三方登陆可以避免繁琐的注册过程，让用户直接使用已有的账号系统进行登录三方平台：一般是已经拥有大量用户的平台，国外的：Facebook，Twitter  国内：微博，微信，QQ 三方登陆的优缺点优点：1）对普通用户  方便，快捷，方便用户实现快捷登录或注册，在第一次绑定成功之后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微博三方登陆">
+<meta property="og:url" content="https://zhang-sitong.gitee.io/blogs/2019/01/28/lz_4/index.html">
+<meta property="og:site_name" content="欢迎来到小张的博客">
+<meta property="og:description" content="微博登录介绍微博登录包括身份认证、用户关系以及内容传播。允许用户使用微博帐号登录访问第三方网站，分享内容，同步信息 什么是第三方登陆可以避免繁琐的注册过程，让用户直接使用已有的账号系统进行登录三方平台：一般是已经拥有大量用户的平台，国外的：Facebook，Twitter  国内：微博，微信，QQ 三方登陆的优缺点优点：1）对普通用户  方便，快捷，方便用户实现快捷登录或注册，在第一次绑定成功之后">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/28/cEbYxmhdIV25vDr.jpg">
+<meta property="article:published_time" content="2019-01-28T08:14:17.000Z">
+<meta property="article:modified_time" content="2021-03-23T01:16:13.033Z">
+<meta property="article:author" content="Z_SiTong">
+<meta property="article:tag" content="第三方">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/28/cEbYxmhdIV25vDr.jpg"><link rel="shortcut icon" href="/blogs/img/favicon.png"><link rel="canonical" href="https://zhang-sitong.gitee.io/blogs/2019/01/28/lz_4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blogs/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/blogs/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+const saveToLocal = {
+  // ttl 單位是 天
+  set: function setWithExpiry(key, value, ttl) {
+    if (ttl === 0) return
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-23 09:16:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><div class="aplayer" data-id="6583040939" data-server="netease" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="auto"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.css"><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/music/APlayer/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/blogs/atom.xml" title="欢迎来到小张的博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/01/28/cEbYxmhdIV25vDr.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blogs/">欢迎来到小张的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blogs/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/blogs/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">微博三方登陆</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2019-01-28T08:14:17.000Z" title="undefined 2019-01-28 16:14:17">2019-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blogs/categories/%E4%B8%89%E6%96%B9/">三方</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="微博登录介绍"><a href="#微博登录介绍" class="headerlink" title="微博登录介绍"></a>微博登录介绍</h2><p>微博登录包括身份认证、用户关系以及内容传播。允许用户使用微博帐号登录访问第三方网站，分享内容，同步信息</p>
+<h2 id="什么是第三方登陆"><a href="#什么是第三方登陆" class="headerlink" title="什么是第三方登陆"></a>什么是第三方登陆</h2><p>可以避免繁琐的注册过程，让用户直接使用已有的账号系统进行登录<br>三方平台：一般是已经拥有大量用户的平台，国外的：Facebook，Twitter  国内：微博，微信，QQ</p>
+<h2 id="三方登陆的优缺点"><a href="#三方登陆的优缺点" class="headerlink" title="三方登陆的优缺点"></a>三方登陆的优缺点</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><p>1）对普通用户</p>
+<blockquote>
+<p>方便，快捷，方便用户实现快捷登录或注册，在第一次绑定成功之后，用户便可以实现一键登录<br>第三方登录可以实现把用户在应用内的活动同步到第三方平台上，省去了用户手动发布动态的麻烦</p>
+</blockquote>
+<p>2）对应用</p>
+<blockquote>
+<p>因为降低了用户的注册或登录成本，从而减少由于本地注册的繁琐性而带来的隐形用户流失，最终提高注册转化率，对某些应用来说，第三方登录可以满足自己的需要，从而增加产品知名度，</p>
+</blockquote>
+<p>3）对第三方</p>
+<blockquote>
+<p>增加用户对平台的依赖，使用越多，对用户的粘性越高，获得更多的影响力，有利于对平台的拉新和促活</p>
+</blockquote>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><blockquote>
+<p>可能造成个人私密信息泄露</p>
+</blockquote>
+<h2 id="绘制流程图理清三方登录逻辑"><a href="#绘制流程图理清三方登录逻辑" class="headerlink" title="绘制流程图理清三方登录逻辑"></a>绘制流程图理清三方登录逻辑</h2><p>三方登录都遵循oauth2</p>
+<p>OAuth（开放授权）是一个开放标准，允许用户授权第三方移动应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方移动应用或分享他们数据的所有内容<br><img src="https://i.loli.net/2021/01/28/4DmxyNF5K7dGOeo.png"></p>
+<h2 id="微博第三方登陆流程"><a href="#微博第三方登陆流程" class="headerlink" title="微博第三方登陆流程"></a>微博第三方登陆流程</h2><ul>
+<li>前端访问我们自己的定义url，然后在我们自己的后台去调用第三方后台给的url，把后端生成的url返回给前端，也就是登录页面</li>
+<li>前端使用location.href重定向获取code</li>
+<li>拿着获取的code去获取的access_token（微博使用post，qq使用post，get都可以）</li>
+<li>拿着access_token去获取用户openid或uid（唯一id）</li>
+<li>判断用户表是不是有uid或openid，如果没有返回给用户绑定页面</li>
+<li>判断输入的用户名和密码是否存在</li>
+<li>不存在，创建用户，并保存到user表和第三方表</li>
+<li>存在，则直接关联，需要返回令牌</li>
+</ul>
+<hr>
+<h2 id="三方登陆"><a href="#三方登陆" class="headerlink" title="三方登陆"></a>三方登陆</h2><h4 id="1、首先注册新浪微博开放接口：http-open-weibo-com"><a href="#1、首先注册新浪微博开放接口：http-open-weibo-com" class="headerlink" title="1、首先注册新浪微博开放接口：http://open.weibo.com/"></a>1、首先注册新浪微博开放接口：<a target="_blank" rel="noopener" href="http://open.weibo.com/">http://open.weibo.com/</a></h4><h4 id="2、填写开发者信息"><a href="#2、填写开发者信息" class="headerlink" title="2、填写开发者信息"></a>2、填写开发者信息</h4><p><img src="https://i.loli.net/2021/01/28/pHrQ92RndiJLtC5.png"></p>
+<h4 id="3、创建应用"><a href="#3、创建应用" class="headerlink" title="3、创建应用"></a>3、创建应用</h4><p><img src="https://i.loli.net/2021/01/28/9VRUbwLlShTiyzD.png"><br><img src="https://i.loli.net/2021/01/28/nHoC5vELxbVjQRZ.png"></p>
+<h4 id="4、拿到应用中的App-Key和App-Secret之后，点击高级信息，填写回调地址"><a href="#4、拿到应用中的App-Key和App-Secret之后，点击高级信息，填写回调地址" class="headerlink" title="4、拿到应用中的App Key和App Secret之后，点击高级信息，填写回调地址"></a>4、拿到应用中的App Key和App Secret之后，点击高级信息，填写回调地址</h4><p><img src="https://i.loli.net/2021/01/28/T1W5HqsdYG2UDr4.png"><br><img src="https://i.loli.net/2021/01/28/vn7q9NFrTyRdhU1.png"></p>
+<h4 id="5、去Django操作"><a href="#5、去Django操作" class="headerlink" title="5、去Django操作"></a>5、去Django操作</h4><ul>
+<li>在settings中配置微博三方登录的应用信息：<br><a target="_blank" rel="noopener" href="https://i.loli.net/2021/01/28/oDyQLR23Z6r1aEm.png">https://i.loli.net/2021/01/28/oDyQLR23Z6r1aEm.png</a></li>
+<li>在views写入以下代码：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class WeiboLoginView(APIView):</span><br><span class="line">    # 使用微博开放平台OAuth2/authorize接口 可以使用get和post</span><br><span class="line">    def get(self, request):</span><br><span class="line">        micro_url = <span class="string">&#x27;https://api.weibo.com/oauth2/authorize?client_id=&#123;&#125;&amp;redirect_uri=&#123;&#125;&#x27;</span>.format(WEIBO_App_Key, WEIBO_URL)</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&#x27;url&#x27;</span>: micro_url&#125;)</span><br><span class="line"></span><br><span class="line">    # 使用新浪开放平台OAuth2/access_token接口, 只能使用post方法</span><br><span class="line">    def post(self, request):</span><br><span class="line">        # 获取code, 去访问token</span><br><span class="line">        code = request.data.get(<span class="string">&#x27;code&#x27;</span>, None)</span><br><span class="line">        # 使用requests网络请求请求</span><br><span class="line">        r = requests.post(<span class="string">&#x27;https://api.weibo.com/oauth2/access_token&#x27;</span>, &#123;</span><br><span class="line">            <span class="string">&#x27;client_id&#x27;</span>: WEIBO_App_Key,</span><br><span class="line">            <span class="string">&#x27;client_secret&#x27;</span>: WEIBO_App_Secret,</span><br><span class="line">            <span class="string">&#x27;grant_type&#x27;</span>: <span class="string">&#x27;authorization_code&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;code&#x27;</span>: code,</span><br><span class="line">            <span class="string">&#x27;redirect_uri&#x27;</span>: WEIBO_URL</span><br><span class="line">        &#125;)</span><br><span class="line">        # 获取返回的对象</span><br><span class="line">        print(r.json())</span><br><span class="line">        access_token = r.json()[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line">        uid = r.json()[<span class="string">&#x27;uid&#x27;</span>]</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&#x27;msg&#x27;</span>: <span class="string">&#x27;登录成功&#x27;</span>,<span class="string">&#x27;code&#x27;</span>: <span class="number">200</span>, <span class="string">&#x27;uid&#x27;</span>: uid.uid&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="6、在前端写一个超链接，可以跳转到微博的回调页"><a href="#6、在前端写一个超链接，可以跳转到微博的回调页" class="headerlink" title="6、在前端写一个超链接，可以跳转到微博的回调页"></a>6、在前端写一个超链接，可以跳转到微博的回调页</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">&quot;https://api.weibo.com/oauth2/authorize?client_id=******&amp;redirect_uri=*****&quot;</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;@/assets/微博.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p><code>PS：按照步骤下来微博三方登录就完成啦</code><br><code>要想看最终效果的话，请点击以下链接哦</code><br>Django-git地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhang-sitong/blog-django-demo">https://gitee.com/zhang-sitong/blog-django-demo</a><br>Vue-git地址：<a target="_blank" rel="noopener" href="https://gitee.com/zhang-sitong/blog-vue-demo">https://gitee.com/zhang-sitong/blog-vue-demo</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Z_SiTong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zhang-sitong.gitee.io/blogs/2019/01/28/lz_4/">https://zhang-sitong.gitee.io/blogs/2019/01/28/lz_4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhang-sitong.gitee.io/blogs" target="_blank">欢迎来到小张的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blogs/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/">第三方</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/01/28/cEbYxmhdIV25vDr.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blogs/2019/01/29/lz_5/"><img class="prev-cover" src="https://i.loli.net/2021/01/29/n1MDixzjsALBNeO.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">三方支付</div></div></a></div><div class="next-post pull-right"><a href="/blogs/2019/01/27/lz_3/"><img class="next-cover" src="https://i.loli.net/2021/01/27/HUmdSQoOPWMT9jz.jpg" onerror="onerror=null;src='/blogs/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue父子组件 子父组件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blogs/2019/01/29/lz_5/" title="三方支付"><img class="cover" src="https://i.loli.net/2021/01/29/n1MDixzjsALBNeO.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-29</div><div class="title">三方支付</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/blogs/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/blogs/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Z_SiTong</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/blogs/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/blogs/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%8D%9A%E7%99%BB%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">微博登录介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86"><span class="toc-number">2.</span> <span class="toc-text">什么是第三方登陆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">三方登陆的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">优点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">缺点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%90%86%E6%B8%85%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91"><span class="toc-number">4.</span> <span class="toc-text">绘制流程图理清三方登录逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%8D%9A%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">微博第三方登陆流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86"><span class="toc-number">6.</span> <span class="toc-text">三方登陆</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%A6%96%E5%85%88%E6%B3%A8%E5%86%8C%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%BC%80%E6%94%BE%E6%8E%A5%E5%8F%A3%EF%BC%9Ahttp-open-weibo-com"><span class="toc-number">6.0.1.</span> <span class="toc-text">1、首先注册新浪微博开放接口：http:&#x2F;&#x2F;open.weibo.com&#x2F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%A1%AB%E5%86%99%E5%BC%80%E5%8F%91%E8%80%85%E4%BF%A1%E6%81%AF"><span class="toc-number">6.0.2.</span> <span class="toc-text">2、填写开发者信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-number">6.0.3.</span> <span class="toc-text">3、创建应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%8B%BF%E5%88%B0%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84App-Key%E5%92%8CApp-Secret%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%82%B9%E5%87%BB%E9%AB%98%E7%BA%A7%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%A1%AB%E5%86%99%E5%9B%9E%E8%B0%83%E5%9C%B0%E5%9D%80"><span class="toc-number">6.0.4.</span> <span class="toc-text">4、拿到应用中的App Key和App Secret之后，点击高级信息，填写回调地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%8E%BBDjango%E6%93%8D%E4%BD%9C"><span class="toc-number">6.0.5.</span> <span class="toc-text">5、去Django操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E5%9C%A8%E5%89%8D%E7%AB%AF%E5%86%99%E4%B8%80%E4%B8%AA%E8%B6%85%E9%93%BE%E6%8E%A5%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%B7%B3%E8%BD%AC%E5%88%B0%E5%BE%AE%E5%8D%9A%E7%9A%84%E5%9B%9E%E8%B0%83%E9%A1%B5"><span class="toc-number">6.0.6.</span> <span class="toc-text">6、在前端写一个超链接，可以跳转到微博的回调页</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/28/%E6%80%BB%E7%BB%93/" title="总结"><img src="https://i.loli.net/2021/03/29/nHq2BC7guU9e4cP.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="总结"/></a><div class="content"><a class="title" href="/blogs/2019/03/28/%E6%80%BB%E7%BB%93/" title="总结">总结</a><time datetime="2019-03-28T06:10:52.000Z" title="发表于 2019-03-28 14:10:52">2019-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/24/lz_19/" title="WebSocket与Http"><img src="https://i.loli.net/2021/03/24/5IZl9AO2XLnjiWM.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="WebSocket与Http"/></a><div class="content"><a class="title" href="/blogs/2019/03/24/lz_19/" title="WebSocket与Http">WebSocket与Http</a><time datetime="2019-03-24T06:10:52.000Z" title="发表于 2019-03-24 14:10:52">2019-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/21/lz_18/" title="MySQL和NoSQL"><img src="https://i.loli.net/2021/03/21/BNz2vCwnVTsXHrf.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="MySQL和NoSQL"/></a><div class="content"><a class="title" href="/blogs/2019/03/21/lz_18/" title="MySQL和NoSQL">MySQL和NoSQL</a><time datetime="2019-03-21T13:18:44.000Z" title="发表于 2019-03-21 21:18:44">2019-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/18/lz_17/" title="MongoDB安装及使用"><img src="https://i.loli.net/2021/03/17/7x6uAiswPjbJknS.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="MongoDB安装及使用"/></a><div class="content"><a class="title" href="/blogs/2019/03/18/lz_17/" title="MongoDB安装及使用">MongoDB安装及使用</a><time datetime="2019-03-18T11:16:58.000Z" title="发表于 2019-03-18 19:16:58">2019-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blogs/2019/03/15/lz_16/" title="上下文管理"><img src="https://i.loli.net/2021/03/23/KM1mN2wtGXSukBd.jpg" onerror="this.onerror=null;this.src='/blogs/img/404.jpg'" alt="上下文管理"/></a><div class="content"><a class="title" href="/blogs/2019/03/15/lz_16/" title="上下文管理">上下文管理</a><time datetime="2019-03-15T11:54:13.000Z" title="发表于 2019-03-15 19:54:13">2019-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> Z_SiTong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blogs/js/utils.js"></script><script src="/blogs/js/main.js"></script><script src="/blogs/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>null<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
