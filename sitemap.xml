@@ -207,7 +207,7 @@
 
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/Django/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -221,7 +221,7 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/Django/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -256,14 +256,14 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/git/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/git/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -286,7 +286,7 @@
 
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/Django/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -300,7 +300,7 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/Django/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -335,14 +335,14 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/git/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/git/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
