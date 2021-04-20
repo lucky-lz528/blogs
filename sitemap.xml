@@ -256,13 +256,6 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2021-04-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/Django/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
@@ -270,7 +263,7 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -278,6 +271,13 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/tags/Python/</loc>
+    <lastmod>2021-04-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -312,14 +312,14 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E7%99%BB%E5%BD%95/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E7%AC%AC%E4%B8%89%E6%96%B9/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/tags/%E7%99%BB%E5%BD%95/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -342,13 +342,6 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2021-04-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/Django/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
@@ -356,7 +349,7 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%AE%B9%E5%99%A8/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -364,6 +357,13 @@
   
   <url>
     <loc>https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2021-04-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -398,14 +398,14 @@
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E7%99%BB%E5%BD%95/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E4%B8%89%E6%96%B9/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E4%B8%89%E6%96%B9/</loc>
+    <loc>https://zhang-sitong.gitee.io/blogs/categories/%E7%99%BB%E5%BD%95/</loc>
     <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
