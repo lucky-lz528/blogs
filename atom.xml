@@ -3,11 +3,11 @@
   <title>欢迎来到小张的博客</title>
   
   
-  <link href="https://zhang-sitong.gitee.io/blogs/atom.xml" rel="self"/>
+  <link href="https://zovt.cn/atom.xml" rel="self"/>
   
-  <link href="https://zhang-sitong.gitee.io/blogs/"/>
+  <link href="https://zovt.cn/"/>
   <updated>2021-04-19T12:46:58.353Z</updated>
-  <id>https://zhang-sitong.gitee.io/blogs/</id>
+  <id>https://zovt.cn/</id>
   
   <author>
     <name>Z_SiTong</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>多因子登录基础知识点</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_28/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_28/</id>
+    <link href="https://zovt.cn/lz_28/"/>
+    <id>https://zovt.cn/lz_28/</id>
     <published>2019-04-19T12:08:59.000Z</published>
     <updated>2021-04-19T12:46:58.353Z</updated>
     
@@ -34,17 +34,17 @@
     
     
     
-    <category term="登录" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E7%99%BB%E5%BD%95/"/>
+    <category term="登录" scheme="https://zovt.cn/categories/%E7%99%BB%E5%BD%95/"/>
     
     
-    <category term="登录" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E7%99%BB%E5%BD%95/"/>
+    <category term="登录" scheme="https://zovt.cn/tags/%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
   <entry>
     <title>基于Docker安装关系型数据库PostgrelSQL替代Mysql</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_27/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_27/</id>
+    <link href="https://zovt.cn/lz_27/"/>
+    <id>https://zovt.cn/lz_27/</id>
     <published>2019-04-14T01:42:58.000Z</published>
     <updated>2021-04-19T13:01:14.862Z</updated>
     
@@ -58,17 +58,17 @@
     
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>json与pickle</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_26/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_26/</id>
+    <link href="https://zovt.cn/lz_26/"/>
+    <id>https://zovt.cn/lz_26/</id>
     <published>2019-04-12T07:48:41.000Z</published>
     <updated>2021-04-13T13:37:11.609Z</updated>
     
@@ -83,17 +83,17 @@
     
     
     
-    <category term="Python基础" scheme="https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    <category term="Python基础" scheme="https://zovt.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="Python" scheme="https://zhang-sitong.gitee.io/blogs/tags/Python/"/>
+    <category term="Python" scheme="https://zovt.cn/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>集合(set)的用法和使用场景，以及底层去重算法</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_25/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_25/</id>
+    <link href="https://zovt.cn/lz_25/"/>
+    <id>https://zovt.cn/lz_25/</id>
     <published>2019-04-06T02:48:41.000Z</published>
     <updated>2021-04-08T01:45:38.188Z</updated>
     
@@ -108,17 +108,17 @@
     
     
     
-    <category term="Python基础" scheme="https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    <category term="Python基础" scheme="https://zovt.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="Python" scheme="https://zhang-sitong.gitee.io/blogs/tags/Python/"/>
+    <category term="Python" scheme="https://zovt.cn/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>openLDAP</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_24/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_24/</id>
+    <link href="https://zovt.cn/lz_24/"/>
+    <id>https://zovt.cn/lz_24/</id>
     <published>2019-03-31T08:52:13.000Z</published>
     <updated>2021-04-08T00:48:40.804Z</updated>
     
@@ -133,17 +133,17 @@
     
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>sort和sorted的区别</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_23/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_23/</id>
+    <link href="https://zovt.cn/lz_23/"/>
+    <id>https://zovt.cn/lz_23/</id>
     <published>2019-03-30T08:14:42.000Z</published>
     <updated>2021-04-07T08:41:55.203Z</updated>
     
@@ -157,17 +157,17 @@
     
     
     
-    <category term="Python基础" scheme="https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    <category term="Python基础" scheme="https://zovt.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="Python" scheme="https://zhang-sitong.gitee.io/blogs/tags/Python/"/>
+    <category term="Python" scheme="https://zovt.cn/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>二叉树</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_22/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_22/</id>
+    <link href="https://zovt.cn/lz_22/"/>
+    <id>https://zovt.cn/lz_22/</id>
     <published>2019-03-29T08:26:55.000Z</published>
     <updated>2021-04-07T08:10:02.035Z</updated>
     
@@ -181,17 +181,17 @@
     
     
     
-    <category term="数据结构" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="https://zovt.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-    <category term="数据结构" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="https://zovt.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
   <entry>
     <title>Git与gitee</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_21/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_21/</id>
+    <link href="https://zovt.cn/lz_21/"/>
+    <id>https://zovt.cn/lz_21/</id>
     <published>2019-01-27T01:48:28.000Z</published>
     <updated>2021-04-20T23:51:34.674Z</updated>
     
@@ -206,17 +206,17 @@
     
     
     
-    <category term="git" scheme="https://zhang-sitong.gitee.io/blogs/categories/git/"/>
+    <category term="git" scheme="https://zovt.cn/categories/git/"/>
     
     
-    <category term="git" scheme="https://zhang-sitong.gitee.io/blogs/tags/git/"/>
+    <category term="git" scheme="https://zovt.cn/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>技术点</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_20%20(%E6%8A%80%E6%9C%AF%E7%82%B9)/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_20%20(%E6%8A%80%E6%9C%AF%E7%82%B9)/</id>
+    <link href="https://zovt.cn/lz_20%20(%E6%8A%80%E6%9C%AF%E7%82%B9)/"/>
+    <id>https://zovt.cn/lz_20%20(%E6%8A%80%E6%9C%AF%E7%82%B9)/</id>
     <published>2019-01-26T06:10:52.000Z</published>
     <updated>2021-04-20T23:51:34.209Z</updated>
     
@@ -230,17 +230,17 @@
     
     
     
-    <category term="技术点" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%8A%80%E6%9C%AF%E7%82%B9/"/>
+    <category term="技术点" scheme="https://zovt.cn/categories/%E6%8A%80%E6%9C%AF%E7%82%B9/"/>
     
     
-    <category term="技术点" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%8A%80%E6%9C%AF%E7%82%B9/"/>
+    <category term="技术点" scheme="https://zovt.cn/tags/%E6%8A%80%E6%9C%AF%E7%82%B9/"/>
     
   </entry>
   
   <entry>
     <title>WebSocket与Http</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_19/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_19/</id>
+    <link href="https://zovt.cn/lz_19/"/>
+    <id>https://zovt.cn/lz_19/</id>
     <published>2019-01-24T06:10:52.000Z</published>
     <updated>2021-04-20T23:51:34.818Z</updated>
     
@@ -255,17 +255,17 @@
     
     
     
-    <category term="通信协议" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="通信协议" scheme="https://zovt.cn/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
     
-    <category term="通信协议" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
+    <category term="通信协议" scheme="https://zovt.cn/tags/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
   <entry>
     <title>MySQL和NoSQL</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_18/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_18/</id>
+    <link href="https://zovt.cn/lz_18/"/>
+    <id>https://zovt.cn/lz_18/</id>
     <published>2019-01-21T13:18:44.000Z</published>
     <updated>2021-04-20T23:51:34.596Z</updated>
     
@@ -279,17 +279,17 @@
     
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>MongoDB安装及使用</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_17/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_17/</id>
+    <link href="https://zovt.cn/lz_17/"/>
+    <id>https://zovt.cn/lz_17/</id>
     <published>2019-01-18T11:16:58.000Z</published>
     <updated>2021-04-20T23:51:34.069Z</updated>
     
@@ -303,17 +303,17 @@
     
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>上下文管理</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_16/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_16/</id>
+    <link href="https://zovt.cn/lz_16/"/>
+    <id>https://zovt.cn/lz_16/</id>
     <published>2018-11-01T11:54:13.000Z</published>
     <updated>2021-04-20T23:51:34.546Z</updated>
     
@@ -327,17 +327,17 @@
     
     
     
-    <category term="Python基础" scheme="https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    <category term="Python基础" scheme="https://zovt.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="Python" scheme="https://zhang-sitong.gitee.io/blogs/tags/Python/"/>
+    <category term="Python" scheme="https://zovt.cn/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python基础</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_15/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_15/</id>
+    <link href="https://zovt.cn/lz_15/"/>
+    <id>https://zovt.cn/lz_15/</id>
     <published>2018-10-25T12:54:13.000Z</published>
     <updated>2021-04-20T23:51:34.637Z</updated>
     
@@ -354,17 +354,17 @@
     
     
     
-    <category term="Python基础" scheme="https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    <category term="Python基础" scheme="https://zovt.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="Python" scheme="https://zhang-sitong.gitee.io/blogs/tags/Python/"/>
+    <category term="Python" scheme="https://zovt.cn/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>线程进程</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_14/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_14/</id>
+    <link href="https://zovt.cn/lz_14/"/>
+    <id>https://zovt.cn/lz_14/</id>
     <published>2018-10-22T06:41:21.000Z</published>
     <updated>2021-04-20T23:51:34.469Z</updated>
     
@@ -378,17 +378,17 @@
     
     
     
-    <category term="Python基础" scheme="https://zhang-sitong.gitee.io/blogs/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    <category term="Python基础" scheme="https://zovt.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="Python" scheme="https://zhang-sitong.gitee.io/blogs/tags/Python/"/>
+    <category term="Python" scheme="https://zovt.cn/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>docker操作容器、镜像 / dockerfile</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_13/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_13/</id>
+    <link href="https://zovt.cn/lz_13/"/>
+    <id>https://zovt.cn/lz_13/</id>
     <published>2018-10-18T04:38:51.000Z</published>
     <updated>2021-04-20T23:51:34.887Z</updated>
     
@@ -403,17 +403,17 @@
     
     
     
-    <category term="容器" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E5%AE%B9%E5%99%A8/"/>
+    <category term="容器" scheme="https://zovt.cn/categories/%E5%AE%B9%E5%99%A8/"/>
     
     
-    <category term="容器" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E5%AE%B9%E5%99%A8/"/>
+    <category term="容器" scheme="https://zovt.cn/tags/%E5%AE%B9%E5%99%A8/"/>
     
   </entry>
   
   <entry>
     <title>视频直播</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_12/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_12/</id>
+    <link href="https://zovt.cn/lz_12/"/>
+    <id>https://zovt.cn/lz_12/</id>
     <published>2018-10-15T12:19:00.000Z</published>
     <updated>2021-04-20T23:51:34.381Z</updated>
     
@@ -428,17 +428,17 @@
     
     
     
-    <category term="Vue" scheme="https://zhang-sitong.gitee.io/blogs/categories/Vue/"/>
+    <category term="Vue" scheme="https://zovt.cn/categories/Vue/"/>
     
     
-    <category term="vue" scheme="https://zhang-sitong.gitee.io/blogs/tags/vue/"/>
+    <category term="vue" scheme="https://zovt.cn/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>无限极分类 (自关联+递归)</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_11/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_11/</id>
+    <link href="https://zovt.cn/lz_11/"/>
+    <id>https://zovt.cn/lz_11/</id>
     <published>2018-10-10T11:54:35.000Z</published>
     <updated>2021-04-20T23:51:34.285Z</updated>
     
@@ -453,17 +453,17 @@
     
     
     
-    <category term="Django" scheme="https://zhang-sitong.gitee.io/blogs/categories/Django/"/>
+    <category term="Django" scheme="https://zovt.cn/categories/Django/"/>
     
     
-    <category term="Django" scheme="https://zhang-sitong.gitee.io/blogs/tags/Django/"/>
+    <category term="Django" scheme="https://zovt.cn/tags/Django/"/>
     
   </entry>
   
   <entry>
     <title>webshell</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_10/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_10/</id>
+    <link href="https://zovt.cn/lz_10/"/>
+    <id>https://zovt.cn/lz_10/</id>
     <published>2018-10-05T08:04:37.000Z</published>
     <updated>2021-04-20T23:51:34.850Z</updated>
     
@@ -478,17 +478,17 @@
     
     
     
-    <category term="工具 网页脚本" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/"/>
+    <category term="工具 网页脚本" scheme="https://zovt.cn/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/"/>
     
     
-    <category term="工具 网页脚本" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/"/>
+    <category term="工具 网页脚本" scheme="https://zovt.cn/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
   <entry>
     <title>redis键空间事件</title>
-    <link href="https://zhang-sitong.gitee.io/blogs/lz_9/"/>
-    <id>https://zhang-sitong.gitee.io/blogs/lz_9/</id>
+    <link href="https://zovt.cn/lz_9/"/>
+    <id>https://zovt.cn/lz_9/</id>
     <published>2018-10-02T13:18:49.000Z</published>
     <updated>2021-04-20T23:51:34.754Z</updated>
     
@@ -502,10 +502,10 @@
     
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-    <category term="数据库" scheme="https://zhang-sitong.gitee.io/blogs/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://zovt.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
