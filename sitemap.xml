@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zovt.cn/lz_31/</loc>
+    
+    <lastmod>2021-04-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zovt.cn/lz_23/</loc>
+    
+    <lastmod>2021-04-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zovt.cn/lz_29/</loc>
     
     <lastmod>2021-04-26</lastmod>
@@ -17,13 +31,6 @@
   
   <url>
     <loc>https://zovt.cn/lz_24/</loc>
-    
-    <lastmod>2021-04-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zovt.cn/lz_23/</loc>
     
     <lastmod>2021-04-26</lastmod>
     
@@ -270,14 +277,14 @@
   </url>
   
   <url>
-    <loc>https://zovt.cn/tags/Django/</loc>
+    <loc>https://zovt.cn/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zovt.cn/tags/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://zovt.cn/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2021-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -291,7 +298,7 @@
   </url>
   
   <url>
-    <loc>https://zovt.cn/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <loc>https://zovt.cn/tags/Django/</loc>
     <lastmod>2021-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -356,14 +363,14 @@
   </url>
   
   <url>
-    <loc>https://zovt.cn/categories/Django/</loc>
+    <loc>https://zovt.cn/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2021-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zovt.cn/categories/%E5%B7%A5%E5%85%B7-%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://zovt.cn/categories/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2021-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -377,7 +384,7 @@
   </url>
   
   <url>
-    <loc>https://zovt.cn/categories/%E5%AE%B9%E5%99%A8/</loc>
+    <loc>https://zovt.cn/categories/Django/</loc>
     <lastmod>2021-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
